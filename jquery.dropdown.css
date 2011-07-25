@@ -1,0 +1,88 @@
+/*!
+ * jquery dropdown 1.0
+ * Copyright 2011, Stefan Benicke (opusonline.at)
+ * Dual licensed under the MIT or GPL Version 3 licenses. (LICENSES.txt)
+ */
+.dropdown_wrap {
+	display: inline-block;
+	position: relative;
+	font: small tahoma, arial, sans-serif;
+}
+.dropdown_arrow {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	padding-top: 1px;
+	font-size: 0;
+	position: relative;
+	top: -1px;
+	left: 4px;
+	border-style: solid dashed dashed;
+	border-color: transparent;
+	border-top-color: #000;
+	border-width: 3px 3px 0;
+}
+.dropdown_active {
+	display: inline-block;
+	padding: 0.3em 1em;
+	border-style: solid;
+	border-color: #ccc #aaa #aaa #ccc;
+	border-width: 1px;
+	background: #ddd;
+	background: -webkit-linear-gradient(top, #ddd, #bbb);
+	background: -moz-linear-gradient(top, #ddd, #bbb);
+	background: -ms-linear-gradient(top, #ddd, #bbb);
+	background: -o-linear-gradient(top, #ddd, #bbb);
+	background: linear-gradient(top, #ddd, #bbb);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#dddddd', EndColorStr='#bbbbbb');
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.dropdown {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	padding: 0.3em 0em;
+	border: 1px solid #aaa;
+	background: #ccc;
+	background: -webkit-linear-gradient(top, #fff, #ccc);
+	background: -moz-linear-gradient(top, #fff, #ccc);
+	background: -ms-linear-gradient(top, #fff, #ccc);
+	background: -o-linear-gradient(top, #fff, #ccc);
+	background: linear-gradient(top, #fff, #ccc);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#cccccc');
+	-webkit-box-shadow: #aaa 1px 1px 7px;
+	-moz-box-shadow: #aaa 1px 1px 7px;
+	box-shadow: #aaa 1px 1px 7px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.dropdown_search {
+	width: 7em;
+	margin: 0.3em 1em;
+	padding: 0.2em;
+	font: small tahoma, arial, sans-serif;
+	border: 1px solid #ccc;
+	background: transparent;
+	-webkit-box-shadow: inset #ccc 1px 1px 2px;
+	-moz-box-shadow: inset #ccc 1px 1px 2px;
+	box-shadow: inset #ccc 1px 1px 2px;
+}
+.dropdown_option {
+	padding: 0.3em 1em;
+	cursor: pointer;
+}
+.dropdown_option.hover {
+	background: #bbb;
+}
+.dropdown_list {
+	overflow-y: auto;
+}
+.dropdown_list .active {
+	color: #f00;
+}
