@@ -76,6 +76,7 @@
 .dropdown_option {
 	padding: 0.3em 1em;
 	cursor: pointer;
+	white-space: nowrap;
 }
 .dropdown_option.hover {
 	background: #bbb;

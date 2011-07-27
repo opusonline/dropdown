@@ -37,6 +37,8 @@
 			option_height,
 			is_open,
 			search_hidden,
+			trigger_change = true,
+			timer,
 			
 			_init = function() {
 				
@@ -50,7 +52,7 @@
 				
 				var index = 0,
 				select = 0;
-				$select.hide().find('option').each(function() {
+				$select.hide().bind('valchange' + options.namespace, _valChange).find('option').each(function() {
 					var $option = $(this),
 					name = $option.html(),
 					value = $option.val(),
@@ -71,10 +73,19 @@
 			},
 			_setIndexActive = function(index) {
 				var name = list[index].name + options.activeText;
+				var $last_active;
 				$dropdown_active.html(name);
-				if ($dropdown_list_active) $dropdown_list_active.removeClass('active');
+				if ($dropdown_list_active) {
+					$last_active = $dropdown_list_active.removeClass('active');
+				}
 				$dropdown_list_active = list[index].element.addClass('active');
-				$select.val(list[index].value);
+				if ($last_active && $dropdown_list_active != $last_active) {
+					$select.val(list[index].value);
+					if (trigger_change) {
+						$select.change();
+					}
+					trigger_change = true;
+				}
 				_hideList();
 			},
 			_setActive = function() {
@@ -94,11 +105,9 @@
 			},
 			_hideList = function() {
 				if ( ! is_open) return;
-				setTimeout(function() {
-					$dropdown.fadeOut(options.speed, function() {
-						$dropdown.css({left:-9999}).show();
-					});
-					is_open = false;
+				is_open = false;
+				timer = setTimeout(function() {
+					$dropdown.css({left:-9999}).show();
 				}, 100);
 			},
 			_addHover = function() {
@@ -169,6 +178,16 @@
 				} else if (code == key_down) {
 					_hoverNext();
 				}
+			},
+			_valChange = function() {
+				var new_value = $select.val();
+				$.each(list, function(key, entry) {
+					if (entry.value == new_value) {
+						trigger_change = false;
+						_setActive.call(entry.element);
+						return;
+					}
+				});
 			},
 			_search = function(event) {
 				var code = event.keyCode;
