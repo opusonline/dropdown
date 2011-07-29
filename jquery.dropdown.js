@@ -8,6 +8,7 @@
 	var defaults = {
 		speed: 250,
 		maxElements: 10,
+		searchField: 'auto',
 		activeText: '<span class="dropdown_arrow"/>',
 		namespace: '.dropdown',
 		highlight: function(value, term) {
@@ -64,12 +65,14 @@
 					index++;
 				});
 				_setIndexActive(select);
-				if (list.length < options.maxElements) {
+				if ( ! options.searchField || (options.maxElements != 'all' && options.searchField == 'auto' && list.length < options.maxElements)) {
 					_hideSearch();
 				}
 				option_height = list[0].element.outerHeight();
-				var max_height = option_height * options.maxElements;
-				$dropdown_list.css('max-height', max_height);
+				if (options.maxElements != 'all') {
+					var max_height = option_height * options.maxElements;
+					$dropdown_list.css('max-height', max_height);
+				}
 			},
 			_setIndexActive = function(index) {
 				var name = list[index].name + options.activeText;
@@ -148,7 +151,7 @@
 				}
 			},
 			_scrollIt = function(index) {
-				if (result.length < options.maxElements) return;
+				if (options.maxElements == 'all' || (options.maxElements != 'all' && result.length < options.maxElements)) return;
 				var scroll_top = $dropdown_list.scrollTop(),
 				scroll_height = option_height * options.maxElements,
 				scroll_end = scroll_height + scroll_top - option_height,
