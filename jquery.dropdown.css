@@ -14,15 +14,12 @@
 	height: 0;
 	line-height: 0;
 	margin-right: 3px;
-	padding-top: 1px;
 	font-size: 0;
 	position: relative;
-	top: -1px;
+	top: 1px;
 	left: 4px;
-	border-style: solid dashed dashed;
-	border-color: transparent;
+	border: 3px dashed transparent;
 	border-top-color: #000;
-	border-width: 3px 3px 0;
 }
 .dropdown_active {
 	display: inline-block;
